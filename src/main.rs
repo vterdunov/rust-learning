@@ -1,38 +1,12 @@
-extern crate rand;
-
-use std::io;
-use std::cmp::Ordering;
-use rand::Rng;
-
 fn main() {
-    println!("Guess the number!");
+    let f = fib(45);
+    println!("{}", f)
+}
 
-    let secret_number = rand::thread_rng().gen_range(1, 100);
-
-    // println!("The secret number is: {}", secret_number);
-
-    loop {
-        println!("Please input your guess.");
-
-        let mut guess = String::new();
-
-        io::stdin().read_line(&mut guess)
-            .expect("Failed to read line");
-
-        let guess: u32 = match guess.trim().parse() {
-            Ok(num) => num,
-            Err(_) => continue,
-        };
-
-        println!("You guessed: {}", guess);
-
-        match guess.cmp(&secret_number) {
-            Ordering::Less => println!("Too small"),
-            Ordering::Greater => println!("Too much"),
-            Ordering::Equal => {
-                println!("You win!");
-                break;
-            },
-        }
+fn fib(n: u32) -> u32 {
+    match n {
+        0 => 0,
+        1 | 2 => 1,
+        _ => fib(n - 1) + fib(n - 2),
     }
 }
