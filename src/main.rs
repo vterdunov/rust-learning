@@ -1,12 +1,13 @@
 fn main() {
-    let f = fib(45);
-    println!("{}", f)
+    let s1 = String::from("Hello");
+
+    let (s2, len) = calculate_length(s1);
+
+    println!("{}{}", s2, len);
 }
 
-fn fib(n: u32) -> u32 {
-    match n {
-        0 => 0,
-        1 | 2 => 1,
-        _ => fib(n - 1) + fib(n - 2),
-    }
+fn calculate_length(s: String) -> (String, usize) {
+    let length = s.len();
+
+    (s, length)
 }
