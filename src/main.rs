@@ -1,17 +1,17 @@
-fn main() {
-    let string = String::from("Hi man");
-    let slice = first_world(&string);
-    println!("{}", slice);
+struct Rectangle {
+    length: u32,
+    width: u32,
 }
 
-fn first_world(s: &str) -> &str {
-    let bytes = s.as_bytes();
+fn main() {
+    let r = Rectangle {
+        length: 50,
+        width: 30,
+    };
 
-    for (i, &item) in bytes.iter().enumerate() {
-        if item == b' ' {
-            return &s[0..i];
-        }
-    }
+    println!("Area {}", area(&r));
+}
 
-    &s[..]
+fn area(r: &Rectangle) -> u32 {
+    r.length * r.width
 }
