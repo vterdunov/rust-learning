@@ -1,11 +1,17 @@
 fn main() {
-    let s1 = String::from("Hello");
-
-    let len = calculate_length(&s1);
-
-    println!("{}{}", s1, len);
+    let string = String::from("Hi man");
+    let slice = first_world(&string);
+    println!("{}", slice);
 }
 
-fn calculate_length(s: &String) -> usize {
-    s.len()
+fn first_world(s: &str) -> &str {
+    let bytes = s.as_bytes();
+
+    for (i, &item) in bytes.iter().enumerate() {
+        if item == b' ' {
+            return &s[0..i];
+        }
+    }
+
+    &s[..]
 }
