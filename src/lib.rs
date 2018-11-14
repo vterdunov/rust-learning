@@ -1,19 +1,14 @@
 pub mod aggregator {
 
   pub trait Summarizible {
-    fn summary(&self) -> String;
-  }
+    fn author_summary(&self) -> String;
 
-  pub struct NewsArticle {
-    pub headline: String,
-    pub location: String,
-    pub author: String,
-    pub content: String,
-  }
-
-  impl Summarizible for NewsArticle {
     fn summary(&self) -> String {
-      format!("{} {}", self.author, self.content)
+      format!("Read more from {}...", self.author_summary())
+    }
+
+    fn notify<T: Summarizible>(item: T) {
+      println!("Breaking news! {}", item.summary())
     }
   }
 
@@ -25,8 +20,8 @@ pub mod aggregator {
   }
 
   impl Summarizible for Tweet {
-    fn summary(&self) -> String {
-      format!("{} {}", self.username, self.content)
+    fn author_summary(&self) -> String {
+      format!("@{}", self.username)
     }
   }
 

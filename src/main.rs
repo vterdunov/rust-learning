@@ -1,15 +1,20 @@
-extern crate hello_world;
+use std::cmp::PartialOrd;
 
-use hello_world::aggregator::Summarizible;
-use hello_world::aggregator::Tweet;
+fn largest<T: PartialOrd + Copy>(list: &[T]) -> T {
+    let mut largest = list[0];
+
+    for &item in list.iter() {
+        if item > largest {
+            largest = item;
+        }
+    }
+
+    largest
+}
 
 fn main() {
-    let tweet = Tweet {
-        username: String::from("username"),
-        content: String::from("content"),
-        reply: true,
-        retweet: false,
-    };
+    let number_list = vec![10, 15, 74, 48, 92];
 
-    println!("{}", tweet.summary());
+    let largest = largest(&number_list);
+    println!("{}", largest);
 }
